@@ -3,5 +3,75 @@ cd chromium
 wget http://launchpadlibrarian.net/237755896/libgcrypt11_1.5.3-2ubuntu4.3_armhf.deb
 wget http://launchpadlibrarian.net/248437551/chromium-codecs-ffmpeg-extra_49.0.2623.87-0ubuntu0.14.04.1.1112_armhf.deb
 wget http://launchpadlibrarian.net/248437549/chromium-browser_49.0.2623.87-0ubuntu0.14.04.1.1112_armhf.deb
-
 sudo dpkg -i *.deb
+
+
+
+
+sudo apt-get update -y
+sudo apt-get upgrade -y
+sudo apt-get autoremove
+
+sudo apt-get install python-mysqldb -y
+
+sudo apt-get install apache2 -y
+sudo apt-get install mysql-server mysql-client -y
+sudo apt-get install php5 libapache2-mod-php5 php5-mysql -y
+sudo service apache2 restart
+
+sudo apt-get install phpmyadmin -y
+sudo nano /etc/apache2/apache2.conf
+
+Include /etc/phpmyadmin/apache.conf
+
+sudo service apache2 restart
+
+sudo apt-get install python-setuptools -y
+
+wget  https://bootstrap.pypa.io/get-pip.py
+sudo python get-pip.py
+sudo rm -rf get-pip.py
+
+sudo pip install Django
+
+django-admin startproject DjangoProject
+cd DjangoProject
+
+python manage.py migrate
+python manage.py runserver 192.168.0.5:8000
+
+pip install RPi.GPIO
+import RPi.GPIO as GPIO
+
+
+# Import des modules
+import RPi.GPIO as GPIO
+import time
+
+# Initialisation de la numerotation et des E/S
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(3, GPIO.OUT, initial = GPIO.HIGH)
+
+# On fait clignoter la LED
+while True:
+    GPIO.output(3, not GPIO.input(3))
+    time.sleep(0.5)
+
+
+GPIO.output(12, GPIO.LOW)
+
+
+import pygame
+pygame.init()
+pygame.mixer.init()
+
+burp = pygame.mixer.Sound("burp.wav")
+
+
+import pygame
+pygame.mixer.init()
+pygame.mixer.music.load("myFile.wav")
+pygame.mixer.music.play()
+while pygame.mixer.music.get_busy() == True:
+    continue
+
